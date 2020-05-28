@@ -23,7 +23,7 @@ def hello_world():
 def show_Set_Information():
     maybe_json = request.get_json(silent=True,cache=False)
     if (maybe_json) :
-        thejson = json.dumps(maybe_json)
+        thejson = json.dumps(maybe_json,ensure_ascii=False)
     else :
         thejson = "no json"
     print (thejson)
