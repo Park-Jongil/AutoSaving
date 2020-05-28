@@ -7,12 +7,20 @@ app = Flask(__name__)
 def show_Set_Information():
     maybe_json = request.get_json(silent=True,cache=False)
     if (maybe_json) :
-        thejson = json.dumps(maybe_json)
-    else :
-        thejson = "no json"
-    print (thejson)
-    return "Process End"
+        strjson = json.dumps(maybe_json,ensure_ascii=False)
+        datajson = json.loads(strjson)
 
+        info = datajson['info']
+        for i in info :
+            print( i['id'] )
+            print( i['name'] )
+
+#        print( datajson )
+
+    else :
+        strjson = "no json"        
+
+    return strjson
 
 if __name__ == '__main__':
     app.run()

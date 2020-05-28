@@ -23,10 +23,21 @@ def hello_world():
 def show_Set_Information():
     maybe_json = request.get_json(silent=True,cache=False)
     if (maybe_json) :
-        thejson = json.dumps(maybe_json,ensure_ascii=False)
+        strjson = json.dumps(maybe_json,ensure_ascii=False)
+#        print(type(strjson))
+#        print(strjson)
+        parserJson = json.loads(strjson)
+#        print(type(parserJson))
+#        print(parserJson)
+
+#        for item in parserJson :
+        print( "ID = " + parserJson['id'] )
+        print( "Name = " + parserJson['name'] )
+        print( "Type = " + str(parserJson['type']) )
+        
     else :
-        thejson = "no json"
-    print (thejson)
+        strjson = "no json"
+#    print (strjson)
     return "Json Received"
 #    return 'profile : ' + request.form.get('text','인자없음')
 
