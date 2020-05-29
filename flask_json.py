@@ -9,11 +9,11 @@ def show_Set_Information():
     if (maybe_json) :
         strjson = json.dumps(maybe_json,ensure_ascii=False)
         datajson = json.loads(strjson)
-
+        print( "Count = " + str(datajson['count']) )
         info = datajson['info']
         for i in info :
-            print( i['id'] )
-            print( i['name'] )
+            print( "ID = " + i['id'] )
+            print( "Name = " + i['name'] )
 
 #        print( datajson )
 
