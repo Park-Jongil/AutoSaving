@@ -60,14 +60,28 @@ def show_Set_Information():
         CarInfo = json.loads(strjson)
 #        for item in parserJson :
         try :
-            iRet = insert_CarStatus(CarInfo['TEL'],CarInfo['CAR'],float(CarInfo['CX']),float(CarInfo['CY']),float(CarInfo['CV']),int(CarInfo['CS']),CarInfo['PN'],CarInfo['PV'])
+            insert_CarStatus(CarInfo['TEL'],CarInfo['CAR'],float(CarInfo['CX']),float(CarInfo['CY']),float(CarInfo['CV']),int(CarInfo['CS']),CarInfo['PN'],CarInfo['PV'])
+            response  = app.response_class(
+                response=json.dumps("Success"),
+                status=440,
+                mimetype='application/json'
+            )
         except :
             print( "Json Parser - 예외처리발생" )
+            response  = app.response_class(
+                response=json.dumps("DB Failure"),
+                status=440,
+                mimetype='application/json'
+            )
         
     else :
-        strjson = "no json"
+        response  = app.response_class(
+            response=json.dumps("Parser Failure"),
+            status=200,
+            mimetype='application/json'
+        )
 
-    return strjson + str(iRet)
+    return response
 
 
 @app.route('/user/<username>')
